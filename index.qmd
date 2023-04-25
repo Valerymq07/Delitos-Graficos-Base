@@ -53,5 +53,75 @@ barplot(
 )
 ```
 
+## Barras Horizontales
+```{r}
+tabla_delitos <- table(delitos_2022$Provincia)
 
+# Ordenar ascendentemente la tabla de frecuencia
+tabla_delitos_ordenada <- sort(tabla_delitos)
+
+# Gráfico de barras horizontales
+barplot(
+    height = tabla_delitos_ordenada,
+    main = "Cantidad de delitos cometidos en 2022 por provincia", 
+    sub = "Fuente: OIJ",
+    col = "brown",
+    las = 2,
+    cex.names = 0.5,
+    cex.axis = 0.7,
+    horiz = TRUE
+)
+```
+
+
+## Gráfico de Pastel 
+```{r}
+tabla_delitos <- table(delitos_2022$Provincia)
+
+# Ordenar ascendentemente la tabla de frecuencia
+tabla_delitos_ordenada <- sort(tabla_delitos)
+
+# Gráfico de pastel
+pie(
+  tabla_delitos_ordenada,
+  main = "Cantidad de delitos cometidos en 2022 por provincia",
+  sub = "Fuente: OIJ",
+  col = rainbow(length(tabla_delitos_ordenada)),
+  cex = 0.8,
+  labels = paste0(
+    round(100 * tabla_delitos_ordenada / sum(tabla_delitos_ordenada), 1), 
+    "%"
+  )
+)
+# Agregar leyenda
+legend(
+  "topright",
+  legend = names(tabla_delitos_ordenada),
+  fill = rainbow(length(tabla_delitos_ordenada)),
+  cex = 0.8,
+  bty = "n" # quitar el marco de la leyenda, valor = ("n", "o")
+)
+```
+
+## Gráficos de Barras 
+```{r}
+tabla_delitos <- table(delitos_2022$Canton)
+
+# Ordenar descendentemente la tabla de frecuencia
+tabla_delitos_ordenada <- sort(tabla_delitos, decreasing = TRUE)
+
+# Obtener los cantones con más delitos
+tabla_delitos_ordenada <- head(tabla_delitos_ordenada, 20)
+
+# Gráfico de barras verticales
+barplot(
+    height = tabla_delitos_ordenada,
+    main = "Cantidad de delitos cometidos en 2022 por cantón", 
+    sub = "Fuente: OIJ",
+    col = "brown",
+    las = 2, # inclinación de las etiquetas (valor entre 0 y 3)
+    cex.names = 0.5,  # tamaño de las etiquetas
+    cex.axis = 0.7 # tamaño de los números en el eje 
+)
+```
 
