@@ -55,6 +55,8 @@ barplot(
 
 ## Barras Horizontales
 ```{r}
+#| label: barras-horizontales
+#| code-fold: true
 tabla_delitos <- table(delitos_2022$Provincia)
 
 # Ordenar ascendentemente la tabla de frecuencia
@@ -76,6 +78,8 @@ barplot(
 
 ## Gráfico de Pastel 
 ```{r}
+#| label: barras-pastel
+#| code-fold: true
 tabla_delitos <- table(delitos_2022$Provincia)
 
 # Ordenar ascendentemente la tabla de frecuencia
@@ -105,6 +109,8 @@ legend(
 
 ## Gráficos de Barras 
 ```{r}
+#| label: grafico-barras
+#| code-fold: true
 tabla_delitos <- table(delitos_2022$Canton)
 
 # Ordenar descendentemente la tabla de frecuencia
