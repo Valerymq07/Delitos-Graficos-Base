@@ -1,0 +1,57 @@
+---
+title: "Delitos de Costa Rica"
+author: "Valery Murillo"
+format:
+  html:
+   toc: true
+   toc_float: true
+lang: es
+---
+
+# Presentación 
+Este documento presenta estadisticas de delitos cometidos en Costa Rica. Los datos provienen del [sitio de datos del Organismo de Investigación (OIJ)](https://sitiooij.poder-judicial.go.cr/index.php/ayuda/servicios-policiales/servicios-a-organizaciones/indice-de-transparencia-del-sector-publico-costarricense/datos-abiertos)
+
+
+
+
+# Carga y muestra de los datos 
+```{r}
+#| label: cara-muestra-datos
+delitos_2022 <- read.csv("estadisticaspoliciales2022.csv")
+
+knitr::kable(
+    head(
+        delitos_2022[, c("Delito", "SubDelito", "Fecha", "Victima", "Edad", "Provincia")], 
+        15
+    ),
+    caption = "Muestra de datos de delitos cometidos en 2022 en Costa Rica"
+)
+
+```
+
+# Grafico de cantidades por delito por provinvia 
+## Barras verticales
+```{r}
+#| label: delitos-provincias-barras-verticales
+#| code-fold: true
+
+# Crear tabla de frecuencias
+tabla_delitos <- table(delitos_2022$Provincia)
+
+# Ordenar descendentemente la tabla de frecuencia
+tabla_delitos_ordenada <- sort(tabla_delitos, decreasing = TRUE)
+
+# Gráfico de barras verticales
+barplot(
+    height = tabla_delitos_ordenada,
+    main = "Cantidad de delitos cometidos en 2022 por provincia", 
+    sub = "Fuente: OIJ",
+    col = "brown",
+    las = 2, # inclinación de las etiquetas (valor entre 0 y 3)
+    cex.names = 0.5,  # tamaño de las etiquetas
+    cex.axis = 0.7 # tamaño de los números en el eje 
+)
+```
+
+
+
